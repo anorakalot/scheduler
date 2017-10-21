@@ -1,5 +1,9 @@
-/*TO DO MAKE MORE ERROR INSTANCES
-make better advice*/
+/*TO DO
+MAKE MORE ERROR CATCHERS
+known error instances
+-inputting a letter for time (causes program to spazz out)
+-catch if seconday_time is more than 24 SOLVED
+*/
 
 
 #include <iostream>
@@ -78,6 +82,11 @@ if (input == "1"){
           std::cout << "thats not a valid time inputted"<<std::endl;
           continue;
         }
+      if (secondary_time> 24){
+          std::cout << "thats not a valid time inputted"<<std::endl;
+          continue;
+        }
+
       //for 1 hour schedule settings
       if (input_time - secondary_time == 1){
         if (day == "m"){
@@ -420,7 +429,3 @@ other_main();
 //end of while program
 return 0;
 }
-/*
-developer notes finish the hints
-and finish with the see schedule function
-*/
