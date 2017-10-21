@@ -1,3 +1,7 @@
+/*TO DO MAKE MORE ERROR INSTANCES
+make better advice*/
+
+
 #include <iostream>
 #include <cmath>
 #include <vector>
@@ -9,8 +13,11 @@
 std::string input;
 
 std::string day;
-int input_time;
 std::string activity;
+int input_time;
+char dash;
+int secondary_time;
+
 std::string empty;
 std::string while_stopper;
 
@@ -28,12 +35,12 @@ std::map<int, std::string> sunday;
 
 int other_main(){
 std::cout << std::endl << std::endl;
-std::cout << "Salutations! Welcome to your scheduler app!"<<std::endl;
+std::cout << "Salutations! Welcome to your schedule app!"<<std::endl;
 std::cout << "What do you want to do?"<<std::endl;
 std::cout << "1. Add things to your schedule"<<std::endl;
 std::cout << "2. Recieve advice about optimal study times"<<std::endl;
 std::cout << "3. View your schedule"<<std::endl;
-std::cout << "4. Exit the program"<<std::endl;
+//std::cout << "4. Exit the program"<<std::endl;
 
 std::cin >> input;
 // to make a new schedule
@@ -52,58 +59,113 @@ if (input == "1"){
     "Example of proper input 12-13"
     "Time is in military time"
     */
-    "Example: 1 pm = 13 in military time"<<std::endl;
+    "Example: 8-9 is valid time input\n"<<std::endl;
     std::cout << "Do you want to make changes to your schedule (Y or N)?"<<std::endl;
     std::cin >> right_menu_check;
     if (right_menu_check == "Y" || right_menu_check == "y"){
       std::cout << std::endl<<std::endl;
 
       while(checker){
-      std::cout << "Day: ";
-      std::cin >> day;
-      std::cout << "Time: ";
-      std::cin >> input_time;
-      std::cout << "Activity: ";
-      std::getline(std::cin, empty);
-      std::getline(std::cin,activity);
+        std::cout << "Day: ";
+        std::cin >> day;
+        std::cout << "Time: ";
+        std::cin >> input_time >> dash >> secondary_time;
+        std::cout << "Activity: ";
+        std::getline(std::cin, empty);
+        std::getline(std::cin,activity);
+      //check time overload
       if (input_time> 24){
-        std::cout << "thats not a valid time inputted"<<std::endl;
-        continue;
+          std::cout << "thats not a valid time inputted"<<std::endl;
+          continue;
+        }
+      //for 1 hour schedule settings
+      if (input_time - secondary_time == 1){
+        if (day == "m"){
+          monday[input_time] = activity;
+        }
+        else if (day == "t"){
+          tuesday[input_time] = activity;
+        }
+        else if (day == "w"){
+          wednesday[input_time] = activity;
+        }
+        else if (day == "r"){
+          thursday[input_time] = activity;
+        }
+        else if (day == "f"){
+          friday[input_time] = activity;
+        }
+        else if (day == "s"){
+          saturday[input_time] = activity;
+        }
+        else if (day == "su"){
+          sunday[input_time] = activity;
+        }
+        else{
+          std::cout << "not valid day"<<std::endl;
+        }
       }
-      if (day == "m"){
-        monday[input_time] = activity;
-      }
-      else if (day == "t"){
-        tuesday[input_time] = activity;
-      }
-      else if (day == "w"){
-        wednesday[input_time] = activity;
-      }
-      else if (day == "r"){
-        thursday[input_time] = activity;
-      }
-      else if (day == "f"){
-        friday[input_time] = activity;
-      }
-      else if (day == "s"){
-        saturday[input_time] = activity;
-      }
-      else if (day == "su"){
-        sunday[input_time] = activity;
-      }
+      //check for range of multiple times to add entries
+      else if (input_time - secondary_time < 0){
+        if (day == "m"){
+          for (int x = input_time; x < secondary_time; ++x){
+            monday[x] = activity;
+          }
+        }
+        else if (day == "t"){
+            for (int x = input_time; x < secondary_time; ++x){
+              tuesday[x] = activity;
+            }
+          }
+        else if (day == "w"){
+            for (int x = input_time; x < secondary_time; ++x){
+              wednesday[x] = activity;
+            }
+          }
+        else if (day == "r"){
+            for (int x = input_time; x < secondary_time; ++x){
+              thursday[x] = activity;
+              }
+            }
+        else if (day == "f"){
+            for (int x = input_time; x < secondary_time; ++x){
+              friday[x] = activity;
+            }
+          }
+        else if (day == "s"){
+            for (int x = input_time; x < secondary_time; ++x){
+              saturday[x] = activity;
+            }
+          }
+        else if (day == "su"){
+            for (int x = input_time; x < secondary_time; ++x){
+              monday[x] = activity;
+            }
+          }
+        else{
+          std::cout << "not valid day"<<std::endl;
+        }
+}
+      //check for time interval is correct
       else{
-        std::cout << "not a valid day"<<std::endl;
-      }
-      std::cout << "Continue?(Y or N)"<<std::endl;
-      std::cin >> while_stopper;
-      if (while_stopper == "N"|| while_stopper == "n"){
-        break;
+        std::cout << "Invalid time interval"<<std::endl;
       }
 
 
-    //end of while loop
-      }
+        //do after if statements for time
+        std::cout << "Continue? (Y or N))"<<std::endl;
+        std::cin >> while_stopper;
+        if (while_stopper == "N"|| while_stopper == "n"){
+          break;
+        }
 
+
+
+
+      //end of while loop
+    }
+
+    //end of if choose to add entry
   }
   //if choose to not add entry
   else{
@@ -117,20 +179,109 @@ other_main();
 // give helpful hints
 if (input == "2"){
   std::string advice_input;
-  std::cout << "which day do you want free time advice for! (m,t,w,r,f,s,su) or exit"<<std::endl;
-  std::cin >> advice_input;
-  if (advice_input == "m"){
-    //FIXME put in nested if statements to give advice for different
-    if (monday[6] == ""|| monday[7] == "" || monday[8]== "" ){
-      std::cout << "It looks like you have some time in the morning to study! Happy Studying!"<<std::endl;
-    }
-    else{
-
-    }
+  for (int x = 0; x < 20; ++x){
+    std::cout << std::endl;
   }
 
+  std::cout << "which day do you want free time managing advice for! (m,t,w,r,f,s,su)"<<std::endl;
+  std::cin >> advice_input;
 
+  //monday case advice
+  if (advice_input == "m"){
+    std::cout << std::endl << std::endl;
+    for (int x = 10; x<22; ++x){
+      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
+      std::cout << "you got this!"<<std::endl;
+      //FIXME PUT IN A PAUSE
+      //std::getline(std::cin,empty);
+      other_main();
+      }
+    }
+    std::cout << "WOAH it seems like youre really busy today you got this!"<<std::endl;
+  }
+  else if (advice_input == "t"){
+    std::cout << std::endl << std::endl;
+    for (int x = 10; x<22; ++x){
+      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
+      std::cout << "you got this!"<<std::endl;
+      //FIXME PUT IN A PAUSE
+      //std::getline(std::cin,empty);
+      other_main();
+      }
+    }
+    std::cout << "WOAH it seems like youre really busy today you got this!"<<std::endl;
+  }
 
+  if (advice_input == "w"){
+    std::cout << std::endl << std::endl;
+    for (int x = 10; x<22; ++x){
+      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
+      std::cout << "you got this!"<<std::endl;
+      //FIXME PUT IN A PAUSE
+      //std::getline(std::cin,empty);
+      other_main();
+      }
+    }
+    std::cout << "WOAH it seems like youre really busy today you got this!"<<std::endl;
+  }
+
+  if (advice_input == "r"){
+    std::cout << std::endl << std::endl;
+    for (int x = 10; x<22; ++x){
+      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
+      std::cout << "you got this!"<<std::endl;
+      //FIXME PUT IN A PAUSE
+      //std::getline(std::cin,empty);
+      other_main();
+      }
+    }
+    std::cout << "WOAH it seems like youre really busy today you got this!"<<std::endl;
+  }
+
+  if (advice_input == "f"){
+    std::cout << std::endl << std::endl;
+    for (int x = 10; x<22; ++x){
+      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
+      std::cout << "you got this!"<<std::endl;
+      //FIXME PUT IN A PAUSE
+      //std::getline(std::cin,empty);
+      other_main();
+      }
+    }
+    std::cout << "WOAH it seems like youre really busy today you got this!"<<std::endl;
+  }
+
+  if (advice_input == "s"){
+    std::cout << std::endl << std::endl;
+    for (int x = 10; x<22; ++x){
+      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
+      std::cout << "you got this!"<<std::endl;
+      //FIXME PUT IN A PAUSE
+      //std::getline(std::cin,empty);
+      other_main();
+      }
+    }
+    std::cout << "WOAH it seems like youre really busy today you got this!"<<std::endl;
+  }
+  if (advice_input == "su"){
+    std::cout << std::endl << std::endl;
+    for (int x = 10; x<22; ++x){
+      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
+      std::cout << "you got this!"<<std::endl;
+      //FIXME PUT IN A PAUSE
+      //std::getline(std::cin,empty);
+      other_main();
+      }
+    }
+    std::cout << "WOAH it seems like youre really busy today you got this!"<<std::endl;
+  }
 //end of hint option
 other_main();
 }
@@ -212,21 +363,10 @@ other_main();
 }
 
 //option to close the program
-if (input == "4"){
-  std::string end_input;
-  std::cout << "are you sure?(Y or N)"<<std::endl;
-  std::cin >> end_input;
-  if (end_input == "Y" || end_input == "y"){
-    //this is because it wont close out if you have added entries
-    //for (int getout = 0; getout<monday.size()+tuesday.size()+wednesday.size()+thursday.size()+friday.size()+saturday.size()+sunday.size();getout++){
-    while(true){
-    return 0;
-  }
-  }
-  else{
-    other_main();
-  }
-}
+
+//if (input == "4"){
+  //NULL;
+//}
 //end of option 4
 
 
