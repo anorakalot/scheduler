@@ -5,15 +5,16 @@
 
 
 
-
+//initialize variables to use throughout the program
 std::string input;
 
 std::string day;
 int input_time;
 std::string activity;
-std::string while_stopper;
-bool checker = true;
 std::string empty;
+std::string while_stopper;
+
+bool checker = true;
 //"day" maps
 std::map<int, std::string> monday;
 std::map<int, std::string> tuesday;
@@ -25,8 +26,7 @@ std::map<int, std::string> sunday;
 
 
 
-
-int main(){
+int other_main(){
 std::cout << std::endl << std::endl;
 std::cout << "Salutations! Welcome to your scheduler app!"<<std::endl;
 std::cout << "What do you want to do?"<<std::endl;
@@ -53,7 +53,7 @@ if (input == "1"){
     "Time is in military time"
     */
     "Example: 1 pm = 13 in military time"<<std::endl;
-    std::cout << "Do you want to make changes to your schedule?"<<std::endl;
+    std::cout << "Do you want to make changes to your schedule (Y or N)?"<<std::endl;
     std::cin >> right_menu_check;
     if (right_menu_check == "Y" || right_menu_check == "y"){
       std::cout << std::endl<<std::endl;
@@ -64,8 +64,12 @@ if (input == "1"){
       std::cout << "Time: ";
       std::cin >> input_time;
       std::cout << "Activity: ";
-      std::cin >> activity;
-
+      std::getline(std::cin, empty);
+      std::getline(std::cin,activity);
+      if (input_time> 24){
+        std::cout << "thats not a valid time inputted"<<std::endl;
+        continue;
+      }
       if (day == "m"){
         monday[input_time] = activity;
       }
@@ -101,12 +105,14 @@ if (input == "1"){
       }
 
   }
+  //if choose to not add entry
   else{
+other_main();
+}
+//if choose after adding entry not to add entry
+other_main();
+}
 //end of option one
-main();
-}
-main();
-}
 
 // give helpful hints
 if (input == "2"){
@@ -115,7 +121,7 @@ if (input == "2"){
   std::cin >> advice_input;
   if (advice_input == "m"){
     //FIXME put in nested if statements to give advice for different
-    if (monday[6] == ""){
+    if (monday[6] == ""|| monday[7] == "" || monday[8]== "" ){
       std::cout << "It looks like you have some time in the morning to study! Happy Studying!"<<std::endl;
     }
     else{
@@ -126,15 +132,17 @@ if (input == "2"){
 
 
 //end of hint option
-main();
+other_main();
 }
 
 //show schedule
 if (input == "3"){
+  bool show_schedule_checker = true;
+  while(show_schedule_checker){
   std::string which_day;
   std::cout << "which day schedule? (m,t,w,r,f,s,su)"<<std::endl<<std::endl;
   std::cin >> which_day;
-
+  //use for loops to print out days schedule
   if (which_day == "m"){
     std::cout << "MONDAY"<<std::endl;
     for (int i = 0; i < monday.size(); ++i){
@@ -188,21 +196,38 @@ if (input == "3"){
       std::cout << sunday[i]<<std::endl;
   }
 }
+std::string string_again;
+std::cout << "Want to see your schedule for another day? (Y or N)"<<std::endl;
+std::cin >> string_again;
+if (string_again== "Y" || string_again == "y"){
+  NULL;
+}
+else{
+  break;
+}
+//end of option 3 while loop
+}
 //end of option 3
-main();
+other_main();
 }
 
+//option to close the program
 if (input == "4"){
   std::string end_input;
   std::cout << "are you sure?(Y or N)"<<std::endl;
   std::cin >> end_input;
   if (end_input == "Y" || end_input == "y"){
+    //this is because it wont close out if you have added entries
+    //for (int getout = 0; getout<monday.size()+tuesday.size()+wednesday.size()+thursday.size()+friday.size()+saturday.size()+sunday.size();getout++){
+    while(true){
     return 0;
   }
+  }
   else{
-    main();
+    other_main();
   }
 }
+//end of option 4
 
 
 
@@ -242,7 +267,37 @@ monday[23]
 
 
 
-//end of main()
+//end of other_main()
+return 0;
+}
+
+int main(){
+for (int y = 0; y < 25; ++y){
+  monday[y] = "";
+}
+
+for (int y = 0; y < 25; ++y){
+  tuesday[y] = "";
+}
+for (int y = 0; y < 25; ++y){
+  wednesday[y] = "";
+}
+for (int y = 0; y < 25; ++y){
+  thursday[y] = "";
+}
+for (int y = 0; y < 25; ++y){
+  friday[y] = "";
+}
+for (int y = 0; y < 25; ++y){
+  saturday[y] = "";
+}
+for (int y = 0; y < 25; ++y){
+  sunday[y] = "";
+}
+
+other_main();
+
+//end of while program
 return 0;
 }
 /*
