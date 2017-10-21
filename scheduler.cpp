@@ -32,7 +32,7 @@ std::map<int, std::string> saturday;
 std::map<int, std::string> sunday;
 
 
-
+//function to make sure you can bypass certain errors
 int other_main(){
 std::cout << std::endl << std::endl;
 std::cout << "Salutations! Welcome to your schedule app!"<<std::endl;
@@ -82,24 +82,31 @@ if (input == "1"){
       if (input_time - secondary_time == 1){
         if (day == "m"){
           monday[input_time] = activity;
+          std::cout<<"change saved!"<<std::endl;
         }
         else if (day == "t"){
           tuesday[input_time] = activity;
+          std::cout<<"change saved!"<<std::endl;
         }
         else if (day == "w"){
           wednesday[input_time] = activity;
+          std::cout<<"change saved!"<<std::endl;
         }
         else if (day == "r"){
           thursday[input_time] = activity;
+          std::cout<<"change saved!"<<std::endl;
         }
         else if (day == "f"){
           friday[input_time] = activity;
+          std::cout<<"change saved!"<<std::endl;
         }
         else if (day == "s"){
           saturday[input_time] = activity;
+          std::cout<<"change saved!"<<std::endl;
         }
         else if (day == "su"){
           sunday[input_time] = activity;
+          std::cout<<"change saved!"<<std::endl;
         }
         else{
           std::cout << "not valid day"<<std::endl;
@@ -111,36 +118,43 @@ if (input == "1"){
           for (int x = input_time; x < secondary_time; ++x){
             monday[x] = activity;
           }
+          std::cout<<"change saved!"<<std::endl;
         }
         else if (day == "t"){
             for (int x = input_time; x < secondary_time; ++x){
               tuesday[x] = activity;
             }
+            std::cout<<"change saved!"<<std::endl;
           }
         else if (day == "w"){
             for (int x = input_time; x < secondary_time; ++x){
               wednesday[x] = activity;
             }
+            std::cout<<"change saved!"<<std::endl;
           }
         else if (day == "r"){
             for (int x = input_time; x < secondary_time; ++x){
               thursday[x] = activity;
               }
+              std::cout<<"change saved!"<<std::endl;
             }
         else if (day == "f"){
             for (int x = input_time; x < secondary_time; ++x){
               friday[x] = activity;
             }
+            std::cout<<"change saved!"<<std::endl;
           }
         else if (day == "s"){
             for (int x = input_time; x < secondary_time; ++x){
               saturday[x] = activity;
             }
+            std::cout<<"change saved!"<<std::endl;
           }
         else if (day == "su"){
             for (int x = input_time; x < secondary_time; ++x){
-              monday[x] = activity;
+              sunday[x] = activity;
             }
+            std::cout<<"change saved!"<<std::endl;
           }
         else{
           std::cout << "not valid day"<<std::endl;
@@ -192,7 +206,7 @@ if (input == "2"){
     for (int x = 10; x<22; ++x){
       if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
-      std::cout << "you got this!"<<std::endl;
+      std::cout << "you've got this!"<<std::endl;
       //FIXME PUT IN A PAUSE
       //std::getline(std::cin,empty);
       other_main();
@@ -203,9 +217,9 @@ if (input == "2"){
   else if (advice_input == "t"){
     std::cout << std::endl << std::endl;
     for (int x = 10; x<22; ++x){
-      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      if ((tuesday[x] == "") && (tuesday[x-1]=="") && (tuesday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
-      std::cout << "you got this!"<<std::endl;
+      std::cout << "you've got this!"<<std::endl;
       //FIXME PUT IN A PAUSE
       //std::getline(std::cin,empty);
       other_main();
@@ -217,9 +231,9 @@ if (input == "2"){
   if (advice_input == "w"){
     std::cout << std::endl << std::endl;
     for (int x = 10; x<22; ++x){
-      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      if ((wednesday[x] == "") && (wednesday[x-1]=="") && (wednesday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
-      std::cout << "you got this!"<<std::endl;
+      std::cout << "you've got this!"<<std::endl;
       //FIXME PUT IN A PAUSE
       //std::getline(std::cin,empty);
       other_main();
@@ -231,9 +245,9 @@ if (input == "2"){
   if (advice_input == "r"){
     std::cout << std::endl << std::endl;
     for (int x = 10; x<22; ++x){
-      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      if ((thursday[x] == "") && (thursday[x-1]=="") && (thursday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
-      std::cout << "you got this!"<<std::endl;
+      std::cout << "you've got this!"<<std::endl;
       //FIXME PUT IN A PAUSE
       //std::getline(std::cin,empty);
       other_main();
@@ -245,9 +259,9 @@ if (input == "2"){
   if (advice_input == "f"){
     std::cout << std::endl << std::endl;
     for (int x = 10; x<22; ++x){
-      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      if ((friday[x] == "") && (friday[x-1]=="") && (friday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
-      std::cout << "you got this!"<<std::endl;
+      std::cout << "you've got this!"<<std::endl;
       //FIXME PUT IN A PAUSE
       //std::getline(std::cin,empty);
       other_main();
@@ -259,9 +273,9 @@ if (input == "2"){
   if (advice_input == "s"){
     std::cout << std::endl << std::endl;
     for (int x = 10; x<22; ++x){
-      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      if ((saturday[x] == "") && (saturday[x-1]=="") && (saturday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
-      std::cout << "you got this!"<<std::endl;
+      std::cout << "you've got this!"<<std::endl;
       //FIXME PUT IN A PAUSE
       //std::getline(std::cin,empty);
       other_main();
@@ -272,9 +286,9 @@ if (input == "2"){
   if (advice_input == "su"){
     std::cout << std::endl << std::endl;
     for (int x = 10; x<22; ++x){
-      if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
+      if ((sunday[x] == "") && (sunday[x-1]=="") && (sunday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
-      std::cout << "you got this!"<<std::endl;
+      std::cout << "you've got this!"<<std::endl;
       //FIXME PUT IN A PAUSE
       //std::getline(std::cin,empty);
       other_main();
@@ -347,6 +361,7 @@ if (input == "3"){
       std::cout << sunday[i]<<std::endl;
   }
 }
+std::cout << std::endl << std::endl;
 std::string string_again;
 std::cout << "Want to see your schedule for another day? (Y or N)"<<std::endl;
 std::cin >> string_again;
@@ -368,41 +383,6 @@ other_main();
   //NULL;
 //}
 //end of option 4
-
-
-
-
-// prototyping different data structures for diplaying schedule
-
-
-std::string schedule =
-"       Monday  ";
-/*
-monday[0]
-monday[1]
-monday[2]
-monday[3]
-monday[4]
-monday[5]
-monday[6]
-monday[7]
-monday[8]
-monday[9]
-monday[10]
-monday[11]
-monday[12]
-monday[13]
-monday[14]
-monday[15]
-monday[16]
-monday[17]
-monday[18]
-monday[19]
-monday[20]
-monday[21]
-monday[22]
-monday[23]
-*/
 
 
 
