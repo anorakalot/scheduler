@@ -3,7 +3,7 @@ MAKE MORE ERROR CATCHERS
 
 known error instances
 -fix inputting a letter for time (causes program to spazz out)
--make a pause for when you give time management advice
+-make a pause for when you give time management advice SOLVED
 -make it so you can save your schedule
 -seperate things into functions
 -make an exit SOLVED
@@ -11,11 +11,12 @@ known error instances
 -make overnight scheduling possible SOLVED
 */
 
-
+//libraries for the program
 #include <iostream>
 #include <cmath>
 #include <vector>
 #include <map>
+#include <unistd.h>//sleep library
 
 
 
@@ -235,6 +236,7 @@ other_main();
 
 // give helpful hints option
 if (input == "2"){
+  int sleep_time = 2000000;
   std::string advice_input;
   for (int x = 0; x < 20; ++x){
     std::cout << std::endl;
@@ -250,7 +252,7 @@ if (input == "2"){
       if ((monday[x] == "") && (monday[x-1]=="") && (monday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
       std::cout << "you've got this!"<<std::endl;
-      //FIXME PUT IN A PAUSE
+      usleep(sleep_time);
       //std::getline(std::cin,empty);
       other_main();
       }
@@ -263,7 +265,7 @@ if (input == "2"){
       if ((tuesday[x] == "") && (tuesday[x-1]=="") && (tuesday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
       std::cout << "you've got this!"<<std::endl;
-      //FIXME PUT IN A PAUSE
+      usleep(sleep_time);
       //std::getline(std::cin,empty);
       other_main();
       }
@@ -277,7 +279,7 @@ if (input == "2"){
       if ((wednesday[x] == "") && (wednesday[x-1]=="") && (wednesday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
       std::cout << "you've got this!"<<std::endl;
-      //FIXME PUT IN A PAUSE
+      usleep(sleep_time);
       //std::getline(std::cin,empty);
       other_main();
       }
@@ -291,7 +293,7 @@ if (input == "2"){
       if ((thursday[x] == "") && (thursday[x-1]=="") && (thursday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
       std::cout << "you've got this!"<<std::endl;
-      //FIXME PUT IN A PAUSE
+      usleep(sleep_time);
       //std::getline(std::cin,empty);
       other_main();
       }
@@ -305,7 +307,7 @@ if (input == "2"){
       if ((friday[x] == "") && (friday[x-1]=="") && (friday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
       std::cout << "you've got this!"<<std::endl;
-      //FIXME PUT IN A PAUSE
+      usleep(sleep_time);
       //std::getline(std::cin,empty);
       other_main();
       }
@@ -319,7 +321,7 @@ if (input == "2"){
       if ((saturday[x] == "") && (saturday[x-1]=="") && (saturday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
       std::cout << "you've got this!"<<std::endl;
-      //FIXME PUT IN A PAUSE
+      usleep(sleep_time);
       //std::getline(std::cin,empty);
       other_main();
       }
@@ -332,7 +334,7 @@ if (input == "2"){
       if ((sunday[x] == "") && (sunday[x-1]=="") && (sunday[x+1] == "")){
       std::cout << "It looks like you have time to get work done from " << x-1 << " to " << x+1<<std::endl;
       std::cout << "you've got this!"<<std::endl;
-      //FIXME PUT IN A PAUSE
+      usleep(sleep_time);
       //std::getline(std::cin,empty);
       other_main();
       }
